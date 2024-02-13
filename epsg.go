@@ -40,6 +40,10 @@ func EPSG() *Repository {
 		codes[32700+i] = UTM(float64(i), false)
 	}
 
+	for i := 1; i < 24; i++ {
+		codes[26900+i] = UTMNAD83(float64(i))
+	}
+
 	for i := 42; i < 51; i++ {
 		codes[3900+i] = RGF93CC(float64(i))
 	}

@@ -56,6 +56,19 @@ func UTM(zone float64, northern bool) ProjectedReferenceSystem {
 	return crs
 }
 
+// UTM represents NAD83 projected Coordinate Reference System's similar to
+// https://epsg.io/26917
+func UTMNAD83(zone float64) ProjectedReferenceSystem {
+
+	crs := NAD83().TransverseMercator(zone*6-183, 0, 0.9996, 500000, 0)
+
+	crs.Area = AreaFunc(func(lon, lat float64) bool {
+		return lon >= zone*6-186 && lon <= zone*6-180 && lat >= 0 && lat <= 84
+	})
+
+	return crs
+}
+
 // ETRS89UTM represents projected Coordinate Reference System's similar to
 // https://epsg.io/25832
 func ETRS89UTM(zone float64) ProjectedReferenceSystem {
