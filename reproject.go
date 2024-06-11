@@ -14,3 +14,13 @@ func ReprojectMap(coords map[int][]float64, fromEpsg, toEpsg int) map[int][]floa
 	}
 	return m
 }
+
+func Reproject(x, y float64, fromEpsg, toEpsg int) (float64, float64) {
+	fromCode, toCode := EPSG().Code(fromEpsg), EPSG().Code(toEpsg)
+	longitude, latitude, _ := From(fromCode)(x, y, 0)
+	if toEpsg != 4326 {
+		x2, y2, _ := To(toCode)(longitude, latitude, 0)
+		return x2, y2
+	}
+	return longitude, latitude
+}
