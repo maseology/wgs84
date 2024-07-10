@@ -24,3 +24,12 @@ func Reproject(x, y float64, fromEpsg, toEpsg int) (float64, float64) {
 	}
 	return longitude, latitude
 }
+
+func ReprojectSlice(xys [][]float64, fromEpsg, toEpsg int) [][]float64 {
+	xysnew := make([][]float64, len(xys))
+	for i, xy := range xys {
+		x, y := Reproject(xy[0], xy[1], fromEpsg, toEpsg)
+		xysnew[i] = []float64{x, y}
+	}
+	return xysnew
+}
