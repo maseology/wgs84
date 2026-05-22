@@ -4,7 +4,7 @@ package wgs84_test
 import (
 	"testing"
 
-	"github.com/wroge/wgs84"
+	"github.com/maseology/wgs84"
 )
 
 func Test(t *testing.T) {

@@ -1,3 +1,3 @@
-module github.com/wroge/wgs84
+module github.com/maseology/wgs84
 
 go 1.20
